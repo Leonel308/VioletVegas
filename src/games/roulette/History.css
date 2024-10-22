@@ -1,0 +1,47 @@
+/* src/games/roulette/History.css */
+
+.history {
+    background-color: #34495e;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 1200px; /* Aumentado para coincidir con la ruleta */
+    margin: 20px auto;
+    text-align: left;
+  }
+  
+  .history h2 {
+    margin-bottom: 10px;
+  }
+  
+  .history ul {
+    list-style: none;
+    padding: 0;
+    max-height: 200px;
+    overflow-y: auto;
+  }
+  
+  .history li {
+    background-color: #2c3e50;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .history .red {
+    color: #e74c3c;
+    font-weight: bold;
+  }
+  
+  .history .black {
+    color: #2c3e50;
+    font-weight: bold;
+  }
+  
+  .history .green {
+    color: #27ae60;
+    font-weight: bold;
+  }
+  

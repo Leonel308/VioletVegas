@@ -3,7 +3,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { useWallet, useConnection } from '@solana/wallet-adapter-react';
 import { PublicKey } from '@solana/web3.js';
-import styles from '../games/roulette/RouletteGame.css';
+import styles from '../games/roulette/Roulette';
 
 // Asegúrate de implementar esta función o reemplázala según tus necesidades
 // import { fetchSolBalance } from '../utils/solana';

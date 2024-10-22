@@ -11,7 +11,7 @@ import { WalletModalProvider } from '@solana/wallet-adapter-react-ui';
 import { clusterApiUrl } from '@solana/web3.js';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Home } from './components/Home';
-import RouletteGame from './games/roulette/RouletteGame';
+import RouletteGame from './games/roulette/Roulette';
 import { UserBalanceProvider } from './components/UserBalanceContext'; // Importar el Proveedor de Balance
 import ErrorBoundary from './components/ErrorBoundary'; // Importar el Error Boundary
 

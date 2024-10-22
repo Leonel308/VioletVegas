@@ -4,7 +4,7 @@ import React, { memo } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import styles from '../styles/GamesList.module.css';
-import RouletteGame from '../games/roulette/RouletteGame'; // Importar el componente Roulette
+import RouletteGame from '../games/roulette/Roulette'; // Importar el componente Roulette
 
 const games = [
   { name: 'DICE', icon: '/template/img/home/Dice.png', subtitle: 'ROLL YOUR LUCK' },
