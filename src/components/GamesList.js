@@ -1,138 +1,92 @@
+// src/components/GamesList.js
+
 import React, { memo } from 'react';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
+import styles from '../styles/GamesList.module.css';
+import RouletteGame from '../games/roulette/RouletteGame'; // Importar el componente Roulette
 
-const GAMES = [
-  { name: 'DICE', icon: '/template/img/home/Dice.png' },
-  { name: 'MINES', icon: '/template/img/home/Mines.png' },
-  { name: 'ROULETTE', icon: '/template/img/home/Roulette.png' },
-  { name: 'PLINKO', icon: '/template/img/home/Plinko.png' },
-  { name: 'CRASH', icon: '/template/img/home/Crash.png' },
-  { name: 'TOWER', icon: '/template/img/home/Towers.png' },
+const games = [
+  { name: 'DICE', icon: '/template/img/home/Dice.png', subtitle: 'ROLL YOUR LUCK' },
+  { name: 'MINES', icon: '/template/img/home/Mines.png', subtitle: 'HIT OR MISS' },
+  { name: 'ROULETTE', icon: '/template/img/home/Roulette.png', subtitle: 'SPIN THE WHEEL' },
+  { name: 'PLINKO', icon: '/template/img/home/Plinko.png', subtitle: 'BOUNCE TO WIN' },
+  { name: 'CRASH', icon: '/template/img/home/Crash.png', subtitle: 'REACH THE SKY' },
+  { name: 'TOWER', icon: '/template/img/home/Towers.png', subtitle: 'CLIMB THE TOP' },
+  { name: 'SLOTS', icon: '/template/img/home/Slots.png', subtitle: 'SPIN TO WIN', isWide: true },
 ];
 
-const SLOTS = { name: 'SLOTS', icon: '/template/img/home/Slots.png' };
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
 
-export const GamesList = memo(({ onSelectGame }) => {
-  const css = `
-    .games-section {
-      margin-bottom: 3rem;
-    }
-    .games-title {
-      font-size: 1.875rem;
-      font-weight: bold;
-      margin-bottom: 1.5rem;
-      color: white;
-    }
-    .games-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr); /* Tres columnas por defecto */
-      gap: 1rem;
-      margin-bottom: 1rem;
-    }
-    @media (min-width: 768px) {
-      .games-grid {
-        grid-template-columns: repeat(4, 1fr); /* Cuatro columnas en pantallas grandes */
-      }
-    }
-    @media (min-width: 1024px) {
-      .games-grid {
-        grid-template-columns: repeat(4, 1fr); /* Cuatro columnas */
-      }
-    }
-    .game-card {
-      background-color: #5b21b6;
-      border-radius: 0.75rem;
-      overflow: hidden;
-      cursor: pointer;
-      transition: all 0.3s ease-in-out;
-      aspect-ratio: 16 / 9; /* Mantiene una proporción 16:9 */
-    }
-    .game-card:hover {
-      background-color: #6d28d9;
-      transform: scale(1.05);
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-    .game-card-content {
-      position: relative;
-      width: 100%;
-      height: 100%;
-    }
-    .game-card-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    .game-card-text {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      padding: 0.5rem;
-      background: rgba(0, 0, 0, 0.5); /* Fondo oscuro para el texto */
-      text-align: center;
-    }
-    .game-card-text span {
-      font-size: 1.125rem;
-      font-weight: 500;
-      color: white;
-    }
+const itemVariants = {
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      type: 'spring',
+      stiffness: 100,
+      damping: 10,
+    },
+  },
+};
 
-    /* Estilo especial para Slots */
-    .slots-card {
-      grid-column: span 2; /* Ocupar dos columnas */
-      aspect-ratio: 32 / 9; /* Mantiene la proporción correcta */
+const GamesList = memo(({ onSelectGame }) => {
+  const navigate = useNavigate();
+
+  const handleGameClick = (gameName) => {
+    if (gameName === 'ROULETTE') {
+      navigate('/roulette');
+    } else {
+      onSelectGame(gameName);
     }
-  `;
+  };
 
   return (
-    <section className="games-section">
-      <style>{css}</style>
-      <motion.h2
-        className="games-title"
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-      >
-        Games
-      </motion.h2>
-      <div className="games-grid">
-        {GAMES.map((game, index) => (
-          <motion.div
-            key={game.name}
-            className="game-card"
-            onClick={() => onSelectGame(game.name)}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 * index }}
-          >
-            <div className="game-card-content">
-              <div className="game-card-image">
-                <img src={game.icon} alt={game.name} />
-              </div>
-              <div className="game-card-text">
-                <span>{game.name}</span>
-              </div>
-            </div>
-          </motion.div>
-        ))}
-        {/* Tarjeta de Slots ajustada */}
-        <motion.div
-          className="game-card slots-card"
-          onClick={() => onSelectGame(SLOTS.name)}
-          initial={{ opacity: 0, y: 20 }}
+    <section className={styles.gamesSection}>
+      <div className={styles.container}>
+        <motion.h2
+          className={styles.title}
+          initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.6 }}
+          transition={{ duration: 0.5 }}
         >
-          <div className="game-card-content">
-            <div className="game-card-image">
-              <img src={SLOTS.icon} alt={SLOTS.name} />
-            </div>
-            <div className="game-card-text">
-              <span>{SLOTS.name}</span>
-            </div>
-          </div>
+          Games
+        </motion.h2>
+        <motion.div
+          className={styles.gamesGrid}
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          {games.map((game) => (
+            <motion.div
+              key={game.name}
+              className={`${styles.gameCard} ${game.isWide ? styles.slotsCard : ''}`}
+              variants={itemVariants}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => handleGameClick(game.name)}
+            >
+              <img src={game.icon} alt={game.name} className={styles.gameImage} loading="lazy" />
+              <div className={styles.gameOverlay}>
+                <h3 className={styles.gameName}>{game.name}</h3>
+                <p className={styles.gameSubtitle}>{game.subtitle}</p>
+              </div>
+            </motion.div>
+          ))}
         </motion.div>
       </div>
     </section>
   );
 });
+
+export default GamesList;

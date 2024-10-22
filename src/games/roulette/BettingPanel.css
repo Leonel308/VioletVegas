@@ -1,0 +1,44 @@
+.betting-panel {
+    margin: 20px;
+    text-align: center;
+  }
+  
+  .betting-inputs {
+    display: inline-block;
+  }
+  
+  .betting-buttons {
+    margin: 10px 0;
+  }
+  
+  .betting-buttons button {
+    margin: 0 5px;
+    padding: 10px;
+    border: none;
+    background-color: #7289da;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .color-select {
+    margin: 10px 0;
+  }
+  
+  .color-select label {
+    margin: 0 10px;
+  }
+  
+  .place-bet-button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .place-bet-button:hover {
+    background-color: #45a049;
+  }
+  

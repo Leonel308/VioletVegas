@@ -1,0 +1,29 @@
+/* src/styles/Home.css */
+
+:root {
+    --violet-dark: #4c1d95;
+    --violet-medium: #6d28d9;
+    --violet-light: #a78bfa;
+    --white: #ffffff;
+    --yellow-accent: #fbbf24;
+}
+
+.home-container {
+  min-height: 100vh;
+  background: var(--violet-dark); /* Se eliminó el gradiente */
+  color: var(--white);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.main-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem; /* Espaciado reducido para más compacidad */
+}
+
+.crypto-section {
+  /* Puedes agregar estilos específicos para la sección de Crypto si es necesario */
+}

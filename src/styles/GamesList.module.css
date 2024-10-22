@@ -1,0 +1,123 @@
+/* src/styles/GamesList.module.css */
+
+.gamesSection {
+  padding: 4rem 2rem;
+  background-color: var(--violet-dark); /* Se eliminó el segundo color violeta */
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.title {
+  font-size: 2.5rem; /* Ajustamos el tamaño */
+  font-weight: bold;
+  text-align: center;
+  color: #f3f4f6;
+  margin-bottom: 2rem;
+  letter-spacing: 1px;
+}
+
+.gamesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem; /* Más compacto */
+}
+
+@media (min-width: 768px) {
+  .gamesGrid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .gamesGrid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2.5rem;
+  }
+}
+
+.gameCard {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1rem;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  aspect-ratio: 16 / 9;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-color: var(--violet-medium); /* Color de fondo más uniforme */
+  border: 2px solid transparent;
+}
+
+.gameCard:hover {
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4);
+  transform: translateY(-10px) scale(1.05);
+  border-color: var(--yellow-accent);
+}
+
+.slotsCard {
+  aspect-ratio: 654 / 230;
+}
+
+@media (min-width: 640px) {
+  .slotsCard {
+    grid-column: span 2;
+  }
+}
+
+@media (min-width: 1200px) {
+  .slotsCard {
+    grid-column: span 2;
+  }
+}
+
+.gameImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.gameCard:hover .gameImage {
+  transform: scale(1.05);
+}
+
+.gameOverlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem; /* Reducido para un diseño más compacto */
+  background: rgba(0, 0, 0, 0.7);
+  color: #f3f4f6;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.gameCard:hover .gameOverlay {
+  opacity: 1;
+}
+
+.gameName {
+  font-size: 1.75rem;
+  font-weight: 800;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.gameSubtitle {
+  font-size: 1.1rem;
+  margin: 0.75rem 0 0;
+  color: var(--yellow-accent);
+  font-weight: 500;
+}

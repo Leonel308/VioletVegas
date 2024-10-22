@@ -1,0 +1,68 @@
+.roulette-wheel-container {
+  position: relative;
+  width: 100%; /* Ocupar todo el ancho de la pantalla */
+  height: 70px; /* Ajustar la altura total del contenedor */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px auto;
+  overflow: hidden;
+  border: 2px solid #7289da;
+  background-color: #23272a;
+}
+
+.roulette-indicator {
+  position: absolute;
+  bottom: -15px; /* Flecha apuntando hacia abajo */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 20px solid #f04747; /* Flecha apuntando hacia abajo */
+  z-index: 10;
+}
+
+.roulette-numbers {
+  display: flex;
+  transition: transform 0.05s linear; /* Hacer la transición más rápida */
+}
+
+.roulette-number {
+  width: 50px; /* Ajustar el tamaño de cada número */
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  font-size: 1rem;
+  color: white;
+  margin: 0 5px;
+}
+
+.red {
+  background-color: #ff4d4d; /* Color rojo */
+}
+
+.black {
+  background-color: #333; /* Color negro */
+}
+
+.green {
+  background-color: #00cc00; /* Color verde */
+}
+
+.spin-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #7289da; /* Color del botón */
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.spin-button:hover {
+  background-color: #5b6eae; /* Cambio de color al hacer hover */
+}

@@ -1,31 +1,18 @@
-// Header.js
+// src/components/Header.js
 
 import React, { useState, useEffect } from 'react';
 import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
 import { useWallet, useConnection } from '@solana/wallet-adapter-react';
 import { LAMPORTS_PER_SOL } from '@solana/web3.js';
 import { CryptoSelectionModal } from './CryptoSelectionModal';
+import { useUserBalance } from './UserBalanceContext'; // Importación correcta
 import { motion } from 'framer-motion';
 
 export const Header = () => {
-  const { publicKey } = useWallet();
-  const { connection } = useConnection();
-  const [balance, setBalance] = useState(0);
+  const { publicKey } = useWallet(); // Definir publicKey
+  const { balanceType, solBalance, fakeBalance, switchBalanceType, setSolBalance } = useUserBalance(); // Acceso correcto
+
   const [isCryptoSelectionModalOpen, setIsCryptoSelectionModalOpen] = useState(false);
-
-  useEffect(() => {
-    const fetchBalance = async () => {
-      if (publicKey) {
-        const balance = await connection.getBalance(publicKey);
-        setBalance(balance / LAMPORTS_PER_SOL);
-      }
-    };
-
-    fetchBalance();
-    const intervalId = setInterval(fetchBalance, 10000);
-
-    return () => clearInterval(intervalId);
-  }, [publicKey, connection]);
 
   const handleOpenDepositModal = () => {
     setIsCryptoSelectionModalOpen(true);
@@ -49,14 +36,15 @@ export const Header = () => {
           </motion.h1>
           <div className="flex items-center space-x-4">
             {publicKey && (
-              <motion.span
-                className="text-white font-semibold bg-violet-700 py-2 px-4 rounded-full"
+              <motion.div
+                className="text-white font-semibold bg-violet-700 py-2 px-4 rounded-full cursor-pointer"
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
+                onClick={() => switchBalanceType(balanceType === 'SOL' ? 'FAKE' : 'SOL')}
               >
-                {balance.toFixed(4)} SOL
-              </motion.span>
+                {balanceType === 'SOL' ? `${solBalance.toFixed(4)} SOL` : `${fakeBalance} FAKE`}
+              </motion.div>
             )}
             <motion.button
               onClick={handleOpenDepositModal}
@@ -72,10 +60,8 @@ export const Header = () => {
           </div>
         </div>
       </header>
-      <CryptoSelectionModal
-        isOpen={isCryptoSelectionModalOpen}
-        onClose={handleCloseDepositModal}
-      />
+      <CryptoSelectionModal isOpen={isCryptoSelectionModalOpen} onClose={handleCloseDepositModal} />
     </>
   );
 };
+  

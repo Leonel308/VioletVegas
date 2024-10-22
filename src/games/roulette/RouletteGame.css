@@ -1,0 +1,152 @@
+/* Estilos del contenedor principal */
+.roulette-container {
+  background: #2c2f33;
+  padding: 20px;
+  border-radius: 15px;
+  text-align: center;
+  color: #fff;
+  max-width: 600px;
+  margin: auto;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+/* Contenedor y estilos de la ruleta */
+.roulette-wheel-container {
+  margin: 20px auto;
+  width: 100%;
+  height: 100px;
+  position: relative;
+  border: 5px solid #7289da;
+  background-color: #23272a;
+  overflow: hidden;
+  box-shadow: inset 0 5px 10px rgba(0, 0, 0, 0.6);
+}
+
+/* Aguja que señala el número ganador */
+.roulette-indicator {
+  position: absolute;
+  top: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-bottom: 30px solid #f04747;
+  z-index: 10;
+}
+
+.roulette-wheel {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 200%;
+  transition: transform 3s cubic-bezier(0.42, 0, 0.58, 1);
+}
+
+.spinning {
+  transform: translateX(-50%);
+}
+
+/* Distribución horizontal de los números */
+.roulette-number {
+  flex: 1 0 6.6%;
+  text-align: center;
+  padding: 10px;
+  font-size: 1.2rem;
+  color: #fff;
+  border-radius: 5px;
+  border: 1px solid #fff;
+}
+
+.red {
+  background-color: #ff0000;
+}
+
+.black {
+  background-color: #000000;
+}
+
+.purple {
+  background-color: #800080;
+  color: #fff;
+}
+
+/* Historial */
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  background: #444;
+  margin: 5px 0;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 0.9rem;
+}
+
+/* Estilos para los mensajes */
+p {
+  font-size: 1rem;
+}
+
+/* Panel de apuestas */
+.betting-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.betting-panel input,
+.betting-panel select {
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+  border: none;
+  font-size: 1rem;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+  width: 200px;
+  text-align: center;
+}
+
+.betting-panel select {
+  background-color: #7289da;
+  color: #fff;
+  cursor: pointer;
+}
+
+.betting-panel button {
+  background-color: #7289da;
+  border: none;
+  padding: 10px 20px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-top: 10px;
+  transition: background-color 0.3s;
+  border-radius: 5px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+.betting-panel button:hover {
+  background-color: #5b6eae;
+}
+
+/* Barra de progreso */
+.progress-bar {
+  height: 20px;
+  background-color: #ddd;
+  border-radius: 10px;
+  margin-top: 10px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  width: 0;
+  background-color: #7289da;
+  border-radius: 10px;
+  transition: width 3s linear;
+}
